@@ -19,10 +19,15 @@ if __name__ == "__main__":
         default='nyu',
         help='model type, kitti or nyu'
     )  
+
+    parser.add_argument('-u', '--url', 
+        default='pretrained',
+        help='path to model'
+    )  
         
     args = parser.parse_args()
 
-    infer_helper = InferenceHelper(dataset=args.model)
+    infer_helper = InferenceHelper(dataset=args.model, url=args.url)
 
     # predict depths of images stored in a directory and store the predictions in 16-bit format in a given separate dir
     infer_helper.predict_dir(args.input, args.output)
